@@ -1,4 +1,8 @@
 <Solution>
   <Project Path="LMS/LMS.csproj" />
   <Project Path="oop-tasks/oop-tasks.csproj" />
+  <Project Path="ROS/ROS.csproj" Id="3c9514eb-89e5-4ffa-bbe7-ab8521a69d3e" />
+  <Project Path="SGMS/SGMS.csproj" Id="35edf40e-72dc-4236-b0fa-15df0b42cb5b" />
+  <Project Path="VRS/VRS.csproj" Id="071e4c4e-af15-42b1-b393-03f8fd5fb56f" />
+  <Project Path="ZMS/ZMS.csproj" Id="6f514ffb-a560-4c4e-96b8-ac205f62ac85" />
 </Solution>
