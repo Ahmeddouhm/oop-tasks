@@ -110,9 +110,9 @@ Alice Johnson returned: Design Patterns
 ```
 
 ## Bonus Challenges (Optional)
-1. Add a limit to how many books a member can borrow at once (e.g., maximum 3 books)
-2. Add a method to search for books by title or author
-3. Keep track of borrowing history with dates
+1. Add a limit to how many books a member can borrow at once (e.g., maximum 3 books) // MyNote → (Library Class)
+2. Add a method to search for books by title or author // MyNote → (Library Class)
+3. Keep track of borrowing history with dates // MyNote → (Library Class)
 4. Add error handling for cases like:
    - Trying to borrow a book that's not available
    - Trying to return a book that wasn't borrowed
