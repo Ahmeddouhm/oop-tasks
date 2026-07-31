@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,18 +6,17 @@ namespace LMS
 {
     internal class Member
     {
-        public string? Name { get; set; }
-        public string? ID { get; set; }
-        public List<Book> BorrowedBooks { get; set; }
+        public string? Name { get; private set; }
+        public string? ID { get; private set; }
+        public List<Book> BorrowedBooks { get; private set; }
 
-        public int BorrowedCount;
+        public int BorrowedCount => BorrowedBooks.Count;
 
         public Member(string name, string id)
         {
             Name = name;
             ID = id;
             BorrowedBooks = new();
-            BorrowedCount = BorrowedBooks.Count;
         }
 
         public string GetInfo() 
