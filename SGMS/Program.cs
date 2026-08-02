@@ -44,4 +44,4 @@ foreach (var student in topStudents)
 Console.WriteLine();
 
 // Get student info
-Console.WriteLine(student1.GetStudentInfo());
+student1.GetStudentInfo();

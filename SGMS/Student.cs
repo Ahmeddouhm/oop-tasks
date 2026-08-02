@@ -95,9 +95,30 @@ namespace SGMS
             }
         }
 
-        public string GetStudentInfo()
+        /*
+        === Student Information ===
+        ID: S001
+        Name: Alice Johnson
+        Email: alice@school.com
+        Grades:
+          Math: 95.00
+          English: 88.00
+          Science: 92.00
+        Average: 91.67 (A)
+         */
+        public void GetStudentInfo()
         {
-            return $"Name : {Name} ({ID}) | GPA = {CalculateAverage().ToString("F2")} => {GetLetterGrade()}";
+            Console.WriteLine($"=== Student Information ===" +
+                $"\nID: {ID}" +
+                $"\nName: {Name}" +
+                $"\nEmail: {Email}");
+
+            Console.WriteLine("Grades:");
+            foreach (var s in Grades)
+            {
+                Console.WriteLine($"    {s.Key}: {s.Value}");
+            }
+            Console.WriteLine($"Average ({GetLetterGrade()})");
         }
     }
 

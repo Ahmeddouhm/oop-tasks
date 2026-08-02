@@ -120,11 +120,11 @@ namespace SGMS
         }
         public void DisplayAllStudents()
         {
-            Console.WriteLine($"Class : {ClassName}");
+            Console.WriteLine($"=== {ClassName} - All Students ===");
             Console.WriteLine($"===================");
             foreach (var s in Students)
             {
-                Console.WriteLine($"({s.ID}) - {s.Name} | {s.CalculateAverage().ToString("F2")}");
+                Console.WriteLine($"({s.ID}) - {s.Name}: {s.CalculateAverage().ToString("F2")} ({s.GetLetterGrade()})");
             }
         }
 
