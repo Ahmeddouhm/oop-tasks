@@ -97,7 +97,7 @@ namespace SGMS
 
         public string GetStudentInfo()
         {
-            return $"Name : {Name} ({ID}) | GPA = {CalculateAverage()} => {GetLetterGrade()}";
+            return $"Name : {Name} ({ID}) | GPA = {CalculateAverage().ToString("F2")} => {GetLetterGrade()}";
         }
     }
 
