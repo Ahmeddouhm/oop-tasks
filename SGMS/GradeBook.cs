@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -108,15 +108,18 @@ namespace SGMS
                 return null;
             }
 
-            for (int i = 1; i < count; i++)
+            for (int i = 0; i < result.Count - 1; i++)
             {
-                if (result[i-1].CalculateAverage() < result[i].CalculateAverage())
+                for (int j = i+1; j < result.Count; j++)
                 {
-                    (result[i], result[i - 1]) = (result[i - 1], result[i]);
+                    if (result[j].CalculateAverage() > result[i].CalculateAverage())
+                    {
+                        (result[i], result[j]) = (result[j], result[i]);
+                    }
                 }
             }
 
-            return result;
+            return result[..count];
         }
         public void DisplayAllStudents()
         {

@@ -10,7 +10,6 @@ namespace SGMS
         public string Name { get; set; }
         public string Email { get; set; }
         public Dictionary<string, double> Grades { get; private set; }
-
         public Student(string id , string name , string email)
         {
             ID = id;
@@ -27,7 +26,7 @@ namespace SGMS
                 return;
             }
 
-            if (grade < 0 && grade > 100)
+            if (grade < 0 || grade > 100)
             {
                 Console.WriteLine("Invaild Grade !");
                 return;
@@ -54,6 +53,7 @@ namespace SGMS
             return -1;
         }
 
+        
         public double CalculateAverage()
         {
             int subjectsCount = Grades.Count;
@@ -64,7 +64,7 @@ namespace SGMS
                 return -1;
             }
 
-            double sum = -1;
+            double sum = 0;
 
             foreach (var kvp in Grades)
             {
