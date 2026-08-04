@@ -10,15 +10,18 @@ namespace SGMS
         public string Name { get; set; }
         public string Email { get; set; }
         public Dictionary<string, double> Grades { get; private set; }
+        public Dictionary<string, double> GradesWeights { get; private set; }
+
         public Student(string id , string name , string email)
         {
             ID = id;
             Name = name;
             Email = email;
             Grades = new();
+            GradesWeights = new();
         }
 
-        public void AddGrade(string subject, double grade)
+        public void AddGrade(string subject, double grade, double weight)
         {
             if (string.IsNullOrWhiteSpace(subject))
             {
@@ -32,10 +35,20 @@ namespace SGMS
                 return;
             }
 
+            if (weight < 0 || weight > 100)
+            {
+                Console.WriteLine("Invaild Weight !");
+                return;
+            }
+
+            weight /= 100;
+
             Grades.Add(subject,grade);
+            GradesWeights.Add(subject,weight);
         }
 
-        public double GetGrade(string subject)
+        // This Method To Get Subject Grade | Weight Depending on the Collection that sent as Argument.
+        public double GetSomething(string subject, Dictionary<string,double> keyValuePairs)
         {
             if (string.IsNullOrWhiteSpace(subject))
             {
@@ -43,7 +56,7 @@ namespace SGMS
                 return -1;
             }
 
-            foreach (var kvp in Grades)
+            foreach (var kvp in keyValuePairs)
             {
                 if (kvp.Key == subject)
                 {
@@ -52,6 +65,23 @@ namespace SGMS
             }
             return -1;
         }
+        //public double GetWeight(string subject)
+        //{
+        //    if (string.IsNullOrWhiteSpace(subject))
+        //    {
+        //        Console.WriteLine("Subject can not be null !");
+        //        return -1;
+        //    }
+
+        //    foreach (var kvp in GradesWeights)
+        //    {
+        //        if (kvp.Key == subject)
+        //        {
+        //            return kvp.Value;
+        //        }
+        //    }
+        //    return -1;
+        //}
 
         
         public double CalculateAverage()
@@ -68,10 +98,13 @@ namespace SGMS
 
             foreach (var kvp in Grades)
             {
-                sum += kvp.Value;
+                string subject = kvp.Key;
+                double grade = kvp.Value;
+
+                sum += grade * GetSomething(subject,GradesWeights);
             }
 
-            return sum / subjectsCount;
+            return sum ;
         }
 
         public char GetLetterGrade()

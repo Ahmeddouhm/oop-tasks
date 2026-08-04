@@ -8,17 +8,17 @@ var student2 = new Student("S002", "Bob Smith", "bob@school.com");
 var student3 = new Student("S003", "Charlie Brown", "charlie@school.com");
 
 // Add grades for students
-student1.AddGrade("Math", 95.0);
-student1.AddGrade("English", 88.0);
-student1.AddGrade("Science", 92.0);
+student1.AddGrade("Math", 95.0, 60);
+student1.AddGrade("English", 88.0, 10);
+student1.AddGrade("Science", 92.0, 30);
 
-student2.AddGrade("Math", 78.0);
-student2.AddGrade("English", 85.0);
-student2.AddGrade("Science", 80.0);
+student2.AddGrade("Math", 78.0, 60);
+student2.AddGrade("English", 85.0, 10);
+student2.AddGrade("Science", 80.0, 30);
 
-student3.AddGrade("Math", 90.0);
-student3.AddGrade("English", 92.0);
-student3.AddGrade("Science", 89.0);
+student3.AddGrade("Math", 90.0, 20);
+student3.AddGrade("English", 92.0, 60);
+student3.AddGrade("Science", 89.0, 20);
 
 // Add students to gradebook
 gradeBook.AddStudent(student1);
