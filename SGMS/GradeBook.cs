@@ -98,7 +98,6 @@ namespace SGMS
 
             return sum / Students.Count;
         }
-
         public List<Student>? GetTopStudents(int count)
         {
             List<Student> result = new(Students);

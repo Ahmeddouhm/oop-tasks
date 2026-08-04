@@ -11,14 +11,20 @@ var student3 = new Student("S003", "Charlie Brown", "charlie@school.com");
 student1.AddGrade("Math", 95.0, 60);
 student1.AddGrade("English", 88.0, 10);
 student1.AddGrade("Science", 92.0, 30);
+student1.SetAttendance(55);
+Console.WriteLine(student1.CalculateAverageWithAttendace());
 
 student2.AddGrade("Math", 78.0, 60);
 student2.AddGrade("English", 85.0, 10);
 student2.AddGrade("Science", 80.0, 30);
+student2.ApplyBonus("Science", 20);
+student2.ApplyBonus("Math", 23);
+student2.SetAttendance(55);
 
 student3.AddGrade("Math", 90.0, 20);
 student3.AddGrade("English", 92.0, 60);
 student3.AddGrade("Science", 89.0, 20);
+student3.SetAttendance(55);
 
 // Add students to gradebook
 gradeBook.AddStudent(student1);

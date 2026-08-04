@@ -119,10 +119,10 @@ Average: 91.67 (A)
 ## Bonus Challenges (Optional)
 1. Add validation for grades (must be between 0 - 100) → DONE
 2. Add a method to drop the lowest grade before calculating average → Not Important
-3. Track attendance and factor it into final grade → Starting 
+3. Track attendance and factor it into final grade → DONE 
 4. Add weighted grades (different subjects have different weights) → DONE
-5. Generate grade reports that can be saved to a file
-6. Add support for extra credit
+5. Generate grade reports that can be saved to a file → Starting
+6. Add support for extra credit → DONE
 7. Implement grade trending (improvement over time)
 
 ## Learning Goals

@@ -12,6 +12,8 @@ namespace SGMS
         public Dictionary<string, double> Grades { get; private set; }
         public Dictionary<string, double> GradesWeights { get; private set; }
 
+        public double Attendance { get; set; } = 1.0;
+
         public Student(string id , string name , string email)
         {
             ID = id;
@@ -100,7 +102,20 @@ namespace SGMS
         //    return -1;
         //}
 
-        
+        public double SetAttendance(double days)
+        {
+            double totalDays = 55;
+
+            if (days < 0 || days > 55)
+            {
+                Console.WriteLine("Invalid Attendance Value !");
+                return 0;
+            }
+
+            Attendance = days / totalDays;
+
+            return Attendance;
+        }
         public double CalculateAverage()
         {
             int subjectsCount = Grades.Count;
@@ -126,6 +141,11 @@ namespace SGMS
             return sum / weightsSum;
         }
 
+        public double CalculateAverageWithAttendance() 
+        {
+            return CalculateAverage() * Attendance;
+        }
+
         public char GetLetterGrade()
         {
             double average = CalculateAverage();
@@ -145,6 +165,31 @@ namespace SGMS
                 default:
                     return 'N';
             }
+        }
+
+        public void ApplyBonus(string subject, double bonus) 
+        {
+            if (string.IsNullOrWhiteSpace(subject))
+            {
+                Console.WriteLine("Subject can not be null !");
+                return;
+            }
+
+            if (bonus < 0 || bonus > 50)
+            {
+                Console.WriteLine("Invalid Bonus Value !");
+                return;
+            }
+
+            double grade = GetGrade(subject);
+
+            if (grade + bonus > 100)
+            {
+                Grades[subject] = 100;
+                return;
+            }
+
+            Grades[subject] = grade + bonus;
         }
 
         /*
