@@ -9,7 +9,7 @@ namespace SGMS
         public string ID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public Dictionary<string, double> Grades { get; private set; }
+        public Dictionary<string,List<double>> SubjectGradeTable { get; set; }
         public Dictionary<string, double> GradesWeights { get; private set; }
 
         public double Attendance { get; set; } = 1.0;
@@ -19,8 +19,8 @@ namespace SGMS
             ID = id;
             Name = name;
             Email = email;
-            Grades = new();
             GradesWeights = new();
+            SubjectGradeTable = new();
         }
 
         public void AddGrade(string subject, double grade, double weight)
@@ -43,10 +43,15 @@ namespace SGMS
                 return;
             }
 
+            if (!SubjectGradeTable.ContainsKey(subject))
+            {
+                SubjectGradeTable.Add(subject, new List<double>());
+            }
+
             weight /= 100;
 
-            Grades.Add(subject,grade);
-            GradesWeights.Add(subject,weight);
+            SubjectGradeTable[subject].Add(grade);
+            GradesWeights[subject] = weight;
         }
 
         // Method Helper O(1) LookUp Instead Of Iterating All the Collection .
@@ -60,48 +65,86 @@ namespace SGMS
 
             return dictionary.TryGetValue(subject, out double value) ? value : -1;
         }
+        private List<double> GetValueBySubject(string subject, Dictionary<string, List<double>> dictionary) 
+        {
+            if (string.IsNullOrWhiteSpace(subject))
+            {
+                Console.WriteLine("Subject can not be null !");
+                return new();
+            }
 
-        public double GetGrade(string subject) => GetValueBySubject(subject, Grades);
+            return dictionary.TryGetValue(subject, out var grades) ? grades : new();
+        }
+
+        public double GetGrade(string subject)
+        {
+            if (string.IsNullOrWhiteSpace(subject))
+            {
+                Console.WriteLine("Subject can not be null !");
+                return 0;
+            }
+
+            List<double> gradesList = GetValueBySubject(subject, SubjectGradeTable);
+
+            if (gradesList is null || gradesList.Count == 0)
+            {
+                Console.WriteLine("Grade List can not be null !");
+                return 0;
+            }
+
+            return gradesList[^1];
+        }
         public double GetWeight(string subject) => GetValueBySubject(subject, GradesWeights);
 
-        // This Method To Get Subject Grade | Weight Depending on the Collection that sent as Argument.
+        public void CheckGradeTrending(string subject) 
+        {
+            if (string.IsNullOrWhiteSpace(subject))
+            {
+                Console.WriteLine("Subject can not be null !");
+                return;
+            }
 
-        //public double GetSomething(string subject, Dictionary<string,double> keyValuePairs)
-        //{
-        //    if (string.IsNullOrWhiteSpace(subject))
-        //    {
-        //        Console.WriteLine("Subject can not be null !");
-        //        return -1;
-        //    }
+            if (!SubjectGradeTable.TryGetValue(subject , out var grades) || grades.Count < 2)
+            {
+                Console.WriteLine("Not enough grade history to determine a trend.");
+                return;
+            }
 
-        //    foreach (var kvp in keyValuePairs)
-        //    {
-        //        if (kvp.Key == subject)
-        //        {
-        //            return kvp.Value;
-        //        }
-        //    }
-        //    return -1;
-        //}
+            int increases = 0, decreases = 0;
 
-        //public double GetWeight(string subject)
-        //{
-        //    if (string.IsNullOrWhiteSpace(subject))
-        //    {
-        //        Console.WriteLine("Subject can not be null !");
-        //        return -1;
-        //    }
+            for (int i = 1; i < SubjectGradeTable[subject].Count; i++)
+            {
+                var lastGrade = SubjectGradeTable[subject][i-1];
+                var currGrade = SubjectGradeTable[subject][i];
 
-        //    foreach (var kvp in GradesWeights)
-        //    {
-        //        if (kvp.Key == subject)
-        //        {
-        //            return kvp.Value;
-        //        }
-        //    }
-        //    return -1;
-        //}
+                if (lastGrade > currGrade)
+                {
+                    decreases++;
+                }
 
+                if (lastGrade < currGrade)
+                {
+                    increases++;
+                }
+
+            }
+
+            if (increases > decreases)
+            {
+                Console.WriteLine("Increasing");
+                ApplyBonus(subject,5);
+            }
+            else if (increases < decreases)
+            {
+                Console.WriteLine("Decreasing");
+                var grade = SubjectGradeTable[subject][^1];
+                Math.Max(0, grade -= 5);
+            }
+            else if (increases == decreases)
+            {
+                Console.WriteLine("Stable Grades");
+            }
+        }
         public double SetAttendance(double days)
         {
             double totalDays = 55;
@@ -118,7 +161,7 @@ namespace SGMS
         }
         public double CalculateAverage()
         {
-            int subjectsCount = Grades.Count;
+            int subjectsCount = SubjectGradeTable.Count;
 
             if (subjectsCount == 0)
             {
@@ -129,10 +172,10 @@ namespace SGMS
             double sum = 0;
             double weightsSum = 0;
 
-            foreach (var kvp in Grades)
+            foreach (var kvp in SubjectGradeTable)
             {
                 string subject = kvp.Key;
-                double grade = kvp.Value;
+                double grade = kvp.Value[^1];
 
                 sum += grade * GetWeight(subject);
                 weightsSum += GetWeight(subject);
@@ -185,11 +228,11 @@ namespace SGMS
 
             if (grade + bonus > 100)
             {
-                Grades[subject] = 100;
+                SubjectGradeTable[subject][^1] = 100;
                 return;
             }
 
-            Grades[subject] = grade + bonus;
+            SubjectGradeTable[subject][^1] = grade + bonus;
         }
 
         /*
@@ -213,9 +256,9 @@ namespace SGMS
                 $"\nEmail: {Email}");
 
             sb.AppendLine("Grades:");
-            foreach (var s in Grades)
+            foreach (var s in SubjectGradeTable)
             {
-                sb.AppendLine($"    {s.Key}: {s.Value}");
+                sb.AppendLine($"    {s.Key}: {s.Value[^1]}");
             }
             sb.AppendLine($"Average ({GetLetterGrade()})");
 

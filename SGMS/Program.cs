@@ -9,10 +9,12 @@ var student3 = new Student("S003", "Charlie Brown", "charlie@school.com");
 
 // Add grades for students
 student1.AddGrade("Math", 95.0, 60);
+student1.AddGrade("Math", 97.0, 60);
 student1.AddGrade("English", 88.0, 10);
 student1.AddGrade("Science", 92.0, 30);
 student1.SetAttendance(55);
 Console.WriteLine(student1.CalculateAverageWithAttendance());
+student1.CheckGradeTrending("Math");
 
 student2.AddGrade("Math", 78.0, 60);
 student2.AddGrade("English", 85.0, 10);
@@ -50,6 +52,6 @@ foreach (var student in topStudents)
 Console.WriteLine();
 
 // Get student info
-student1.GetStudentInfo();
+Console.WriteLine(student1.GetStudentInfo()); ;
 
 gradeBook.GenerateReport();
