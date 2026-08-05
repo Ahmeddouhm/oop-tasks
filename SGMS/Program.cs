@@ -12,7 +12,7 @@ student1.AddGrade("Math", 95.0, 60);
 student1.AddGrade("English", 88.0, 10);
 student1.AddGrade("Science", 92.0, 30);
 student1.SetAttendance(55);
-Console.WriteLine(student1.CalculateAverageWithAttendace());
+Console.WriteLine(student1.CalculateAverageWithAttendance());
 
 student2.AddGrade("Math", 78.0, 60);
 student2.AddGrade("English", 85.0, 10);
@@ -51,3 +51,5 @@ Console.WriteLine();
 
 // Get student info
 student1.GetStudentInfo();
+
+gradeBook.GenerateReport();

@@ -130,5 +130,25 @@ namespace SGMS
             }
         }
 
+        public void GenerateReport()
+        {
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filePath = Path.Combine(desktopPath, "GradeReport.txt");
+
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"=== {ClassName} - All Students ===");
+            sb.AppendLine($"===================");
+            foreach (var s in Students)
+            {
+                //sb.AppendLine($"({s.ID}) - {s.Name}: {s.CalculateAverage().ToString("F2")} ({s.GetLetterGrade()})");
+                sb.AppendLine(s.GetStudentInfo());
+
+            }
+
+            File.WriteAllText(filePath,sb.ToString());
+
+            Console.WriteLine("Reprot Generated Successfully .");
+        }
     }
 }

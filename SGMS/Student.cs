@@ -203,21 +203,25 @@ namespace SGMS
           Science: 92.00
         Average: 91.67 (A)
          */
-        public void GetStudentInfo()
+        public string GetStudentInfo()
         {
-            Console.WriteLine($"=== Student Information ===" +
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"=== Student Information ===" +
                 $"\nID: {ID}" +
                 $"\nName: {Name}" +
                 $"\nEmail: {Email}");
 
-            Console.WriteLine("Grades:");
+            sb.AppendLine("Grades:");
             foreach (var s in Grades)
             {
-                Console.WriteLine($"    {s.Key}: {s.Value}");
+                sb.AppendLine($"    {s.Key}: {s.Value}");
             }
-            Console.WriteLine($"Average ({GetLetterGrade()})");
+            sb.AppendLine($"Average ({GetLetterGrade()})");
+
+            return sb.ToString();
         }
     }
 
-    
+
 }

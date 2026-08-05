@@ -121,7 +121,7 @@ Average: 91.67 (A)
 2. Add a method to drop the lowest grade before calculating average → Not Important
 3. Track attendance and factor it into final grade → DONE 
 4. Add weighted grades (different subjects have different weights) → DONE
-5. Generate grade reports that can be saved to a file → Starting
+5. Generate grade reports that can be saved to a file → DONE
 6. Add support for extra credit → DONE
 7. Implement grade trending (improvement over time)
 
