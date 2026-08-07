@@ -14,7 +14,6 @@ namespace SGMS
             ClassName = className;
             Students = new();
         }
-
         public void AddStudent(Student student) 
         {
             if (student is null)
