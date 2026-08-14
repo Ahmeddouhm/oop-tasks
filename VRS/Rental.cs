@@ -13,12 +13,12 @@ namespace VRS
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
 
-        public Rental(string id, Customer customer, Vehicle vehicle, DateTime startDate, DateTime endDate)
+        public Rental(string id, Customer customer, Vehicle vehicle, DateTime endDate)
         {
             ID = id;
             Customer = customer;
             Vehicle = vehicle;
-            StartDate = startDate;
+            StartDate = DateTime.Now;
             EndDate = endDate;
             IsActive = true;
         }

@@ -42,6 +42,10 @@ namespace VRS
         {
             var sb = new StringBuilder();
 
+            sb.AppendLine("======================");
+            sb.AppendLine($"({ID}) | {Model} - {Make} | {Year} | DailyRate: {DailyRate} | Status: {IsAvailable}");
+            sb.AppendLine("======================");
+
             return sb.ToString();
         }
     }

@@ -25,6 +25,14 @@ namespace VRS
         {
             var sb = new StringBuilder();
 
+            sb.AppendLine("===============");
+            sb.AppendLine($"ID: {ID}");
+            sb.AppendLine($"Name: {Name}");
+            sb.AppendLine($"PhoneNo: {PhoneNumber}");
+            sb.AppendLine($"Email: {Email}");
+            sb.AppendLine($"DLN: {DriversLicenseNumber}");
+            sb.AppendLine("===============");
+
             return sb.ToString();
         }
     }
