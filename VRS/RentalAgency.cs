@@ -133,7 +133,7 @@ namespace VRS
         public string DisplayFleet()
         {
             var sb = new StringBuilder();
-
+            sb.AppendLine($"=== {AgencyName} - Fleet Status ===");
             foreach (var v in Vehicles)
             {
                 string status = v.IsAvailable ? "Available" : "Rented";
