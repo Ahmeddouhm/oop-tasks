@@ -36,7 +36,15 @@ namespace VRS
 
         public double CalculateRentalCost(int days) 
         {
-            return DailyRate * days;
+            double totalCost = DailyRate * days;
+
+            if (days > 15)
+            {
+                double discount = 0.15;
+                totalCost -= (totalCost * discount);
+            }
+
+            return totalCost;
         }
         public string GetVehicleInfo()
         {

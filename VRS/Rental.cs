@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace VRS
 {
@@ -30,7 +31,7 @@ namespace VRS
 
         public double GetTotalCost() 
         {
-            return Vehicle.CalculateRentalCost(GetRentalDuration()) + 250;
+            return Vehicle.CalculateRentalCost(GetRentalDuration()) + 150;
         }
 
         public void CompleteRental() 
@@ -42,8 +43,24 @@ namespace VRS
         public string GetRentalInfo() 
         {
             var sb = new StringBuilder();
-
+            sb.AppendLine("===============");
+            sb.AppendLine($"RentalID: {ID}");
+            sb.AppendLine($"Name: {Customer.Name}");
+            sb.AppendLine($"VehicleID: {Vehicle.ID}");
+            sb.AppendLine($"StartDate: {StartDate}");
+            string cost = (GetTotalCost() > 0) ? $"{GetTotalCost()}" : "No Costs Yet";
+            sb.AppendLine($"Cost: {cost}");
+            sb.AppendLine($"Status: {IsActive}");
+            sb.AppendLine("===============");
             return sb.ToString();
+        }
+
+        public void GenerateReceipts() 
+        {
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filePath = Path.Combine(desktopPath, "Rental Receipt.txt");
+
+            File.WriteAllText(filePath, GetRentalInfo());
         }
     }
 }

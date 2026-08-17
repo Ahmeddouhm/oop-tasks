@@ -1,4 +1,4 @@
-# OOP Task 3: Vehicle Rental System
+﻿# OOP Task 3: Vehicle Rental System
 
 ## Objective
 Build a Vehicle Rental System to practice OOP concepts including classes, encapsulation, working with dates, and basic business logic.
@@ -162,14 +162,14 @@ Alice's rental history: 1 rental(s)
 ```
 
 ## Bonus Challenges (Optional)
-1. Add different vehicle types (SUV, Truck, Luxury) with different rates
-2. Implement late return fees
+1. Generate rental receipts → DONE
+2. Implement discounts for long-term rentals → DONE
 3. Add insurance options with additional costs
-4. Track mileage and add mileage-based fees
-5. Implement discounts for long-term rentals
-6. Add vehicle maintenance tracking
-7. Generate rental receipts
-8. Add fuel policy (full-to-full, pre-paid, etc.)
+4. Add different vehicle types (SUV, Truck, Luxury) with different rates
+5. Implement late return fees
+6. Add fuel policy (full-to-full, pre-paid, etc.)
+7. Track mileage and add mileage-based fees
+8. Add vehicle maintenance tracking
 
 ## Learning Goals
 - Creating interconnected classes

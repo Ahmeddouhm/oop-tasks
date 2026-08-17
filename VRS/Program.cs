@@ -26,7 +26,7 @@ agency.RegisterCustomer(customer2);
 Console.WriteLine(agency.DisplayFleet());
 
 // Create rentals
-var rental1 = agency.CreateRental(customer1, car1, 5);
+var rental1 = agency.CreateRental(customer1, car1, 16);
 Console.WriteLine("Rental created: " + rental1.ID);
 Console.WriteLine("Total Cost: " + rental1.GetTotalCost().ToString("C"));
 Console.WriteLine($"Customer: {rental1.Customer.Name}");
@@ -34,7 +34,7 @@ Console.WriteLine($"Vehicle: {rental1.Vehicle.Year} {rental1.Vehicle.Make} {rent
 Console.WriteLine($"Duration: {rental1.GetRentalDuration()} Days");
 Console.WriteLine();
 
-var rental2 = agency.CreateRental(customer2, car3, 3);
+var rental2 = agency.CreateRental(customer2, car3, 30);
 Console.WriteLine("Rental created: " + rental2.ID);
 Console.WriteLine("Total Cost: " + rental2.GetTotalCost().ToString("C"));
 Console.WriteLine($"Customer: {rental2.Customer.Name}");
@@ -53,6 +53,9 @@ Console.WriteLine("Rental " + rental1.ID + " completed!");
 // Display customer rental history
 var customerRentals = agency.getCustomerRentals("C001");
 Console.WriteLine("Alice's rental history: " + customerRentals.Count + " rental(s)");
+
+// Generate Receipts
+rental1.GenerateReceipts();
 
 /*
 === Prime Car Rentals - Fleet Status ===
