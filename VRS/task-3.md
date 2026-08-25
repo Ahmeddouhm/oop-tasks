@@ -165,7 +165,7 @@ Alice's rental history: 1 rental(s)
 1. Generate rental receipts → DONE
 2. Implement discounts for long-term rentals → DONE
 3. Add insurance options with additional costs
-4. Add different vehicle types (SUV, Truck, Luxury) with different rates
+4. Add different vehicle types (SUV, Truck, Luxury) with different rates → DONE
 5. Implement late return fees
 6. Add fuel policy (full-to-full, pre-paid, etc.)
 7. Track mileage and add mileage-based fees

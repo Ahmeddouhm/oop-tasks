@@ -8,10 +8,14 @@ var agency = new RentalAgency("Prime Car Rentals");
 var car1 = new Vehicle("V001", "Toyota", "Camry", 2022, 45.00);
 var car2 = new Vehicle("V002", "Honda", "Accord", 2023, 50.00);
 var car3 = new Vehicle("V003", "Tesla", "Model 3", 2023, 85.00);
+Vehicle myTruck = new Truck("T001", "Ford", "F-150", 2022, 60.0);
+Vehicle myLuxury = new Luxury("L001", "Mercedes", "S-Class", 2023, 150.0);
 
 agency.AddVehicle(car1);
 agency.AddVehicle(car2);
 agency.AddVehicle(car3);
+agency.AddVehicle(myTruck);
+agency.AddVehicle(myLuxury);
 
 // Register customers
 var customer1 = new Customer("C001", "Alice Johnson", "555-0123",
@@ -42,6 +46,14 @@ Console.WriteLine($"Vehicle: {rental2.Vehicle.Year} {rental2.Vehicle.Make} {rent
 Console.WriteLine($"Duration: {rental2.GetRentalDuration()} Days");
 Console.WriteLine();
 
+var rental3 = agency.CreateRental(customer2, myLuxury, 30);
+Console.WriteLine("Rental created: " + rental3.ID);
+Console.WriteLine("Total Cost: " + rental3.GetTotalCost().ToString("C"));
+Console.WriteLine($"Customer: {rental3.Customer.Name}");
+Console.WriteLine($"Vehicle: {rental3.Vehicle.Year} {rental3.Vehicle.Make} {rental3.Vehicle.Model} ");
+Console.WriteLine($"Duration: {rental3.GetRentalDuration()} Days");
+Console.WriteLine();
+
 // Display available vehicles after rentals
 Console.WriteLine("After rentals:");
 Console.WriteLine(agency.DisplayFleet());
@@ -51,7 +63,7 @@ agency.CompleteRental(rental1.ID);
 Console.WriteLine("Rental " + rental1.ID + " completed!");
 
 // Display customer rental history
-var customerRentals = agency.getCustomerRentals("C001");
+var customerRentals = agency.GetCustomerRentals("C001");
 Console.WriteLine("Alice's rental history: " + customerRentals.Count + " rental(s)");
 
 // Generate Receipts

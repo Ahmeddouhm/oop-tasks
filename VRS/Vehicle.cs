@@ -34,9 +34,10 @@ namespace VRS
             IsAvailable = true;
         }
 
-        public double CalculateRentalCost(int days) 
+        public virtual double CalculateRentalCost(int days) 
         {
             double totalCost = DailyRate * days;
+            //double lateFees = 
 
             if (days > 15)
             {
@@ -46,7 +47,7 @@ namespace VRS
 
             return totalCost;
         }
-        public string GetVehicleInfo()
+        public virtual string GetVehicleInfo()
         {
             var sb = new StringBuilder();
 
@@ -55,6 +56,62 @@ namespace VRS
             sb.AppendLine("======================");
 
             return sb.ToString();
+        }
+    }
+
+    class SUV : Vehicle 
+    {
+        public SUV(string id, string make, string model, int year, double dailyrate) : base(id,make,model,year,dailyrate)
+        {
+            
+        }
+
+        public override double CalculateRentalCost(int days)
+        {
+            double baseCost = base.CalculateRentalCost(days);
+            return baseCost + 55;
+        }
+
+        public override string GetVehicleInfo()
+        {
+            
+            return "[SUV]" + base.GetVehicleInfo();
+        }
+    }
+    class Truck : Vehicle 
+    {
+        public Truck(string id, string make, string model, int year, double dailyrate) : base(id,make,model,year,dailyrate)
+        {
+            
+        }
+
+        public override double CalculateRentalCost(int days)
+        {
+            double baseCost = base.CalculateRentalCost(days);
+            return baseCost + (days*20);
+        }
+        public override string GetVehicleInfo()
+        {
+            
+            return "[Truck]" + base.GetVehicleInfo();
+        }
+    }
+    class Luxury : Vehicle 
+    {
+        public Luxury(string id, string make, string model, int year, double dailyrate) : base(id,make,model,year,dailyrate)
+        {
+            
+        }
+
+        public override double CalculateRentalCost(int days)
+        {
+            double baseCost = days * DailyRate;
+            return baseCost + (baseCost * 0.20);
+        }
+        public override string GetVehicleInfo()
+        {
+            
+            return "[Luxury]" + base.GetVehicleInfo();
         }
     }
 }

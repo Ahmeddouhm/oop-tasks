@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
@@ -8,6 +8,7 @@ namespace VRS
     internal class Rental
     {
         public string ID { get; set; }
+        public double LateFee { get; set; }
         public Customer Customer { get; set; }
         public Vehicle Vehicle { get; set; }
         public DateTime StartDate { get; set; }
@@ -26,7 +27,7 @@ namespace VRS
 
         public int GetRentalDuration() 
         {
-            return (EndDate - StartDate).Days;
+            return (int)Math.Ceiling((EndDate - StartDate).TotalDays);
         }
 
         public double GetTotalCost() 
@@ -34,10 +35,18 @@ namespace VRS
             return Vehicle.CalculateRentalCost(GetRentalDuration()) + 150;
         }
 
-        public void CompleteRental() 
+        public void CompleteRental(DateTime? actualReturnDate = null)
         {
+            DateTime returnDate = actualReturnDate ?? DateTime.Now;
+
+            if (returnDate > EndDate)
+            {
+
+            }
+
             Vehicle.ReturnVehicle();
-            IsActive = true;
+            EndDate = DateTime.Now;
+            IsActive = false;
         }
 
         public string GetRentalInfo() 

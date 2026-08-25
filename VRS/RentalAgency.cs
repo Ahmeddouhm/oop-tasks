@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -43,7 +43,7 @@ namespace VRS
 
         public Rental? CreateRental(Customer customer, Vehicle vehicle, int days)
         {
-            if (customer == null || vehicle == null || days <= 0)
+            if (customer == null || vehicle == null || days <= 0 || !vehicle.IsAvailable)
             {
                 Console.WriteLine("Invalid Data");
                 return null;
@@ -105,7 +105,7 @@ namespace VRS
             return res;
         }
 
-        public List<Rental>? getCustomerRentals(string customerId)
+        public List<Rental>? GetCustomerRentals(string customerId)
         {
             if (string.IsNullOrWhiteSpace(customerId))
             {
