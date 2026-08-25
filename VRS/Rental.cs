@@ -32,7 +32,7 @@ namespace VRS
 
         public double GetTotalCost() 
         {
-            return Vehicle.CalculateRentalCost(GetRentalDuration()) + 150;
+            return Vehicle.CalculateRentalCost(GetRentalDuration()) + 150 + LateFee;
         }
 
         public void CompleteRental(DateTime? actualReturnDate = null)
@@ -41,11 +41,12 @@ namespace VRS
 
             if (returnDate > EndDate)
             {
+                int lateDays = (int)Math.Ceiling((returnDate - EndDate).TotalDays);
 
+                LateFee = (Vehicle.DailyRate * 0.75) * lateDays; 
             }
 
             Vehicle.ReturnVehicle();
-            EndDate = DateTime.Now;
             IsActive = false;
         }
 

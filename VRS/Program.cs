@@ -68,6 +68,16 @@ Console.WriteLine("Alice's rental history: " + customerRentals.Count + " rental(
 
 // Generate Receipts
 rental1.GenerateReceipts();
+Console.WriteLine();
+
+// assuming rental1 was rented for 16 days (Ends in 16 days from today)
+// for testing i will pretend that they returned it 20 days from today (which is 4 days late)
+
+DateTime lateReturnDate = DateTime.Now.AddDays(20);
+rental1.CompleteRental(lateReturnDate);
+Console.WriteLine($"Late Fee Applied: {rental1.LateFee:C}");
+Console.WriteLine($"New Total Cost: {rental1.GetTotalCost():C}");
+
 
 /*
 === Prime Car Rentals - Fleet Status ===
