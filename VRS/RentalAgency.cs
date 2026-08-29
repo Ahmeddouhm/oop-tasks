@@ -41,7 +41,7 @@ namespace VRS
             Customers.Add(customer);
         }
 
-        public Rental? CreateRental(Customer customer, Vehicle vehicle, int days)
+        public Rental? CreateRental(Customer customer, Vehicle vehicle, int days, bool applyInsurance = false)
         {
             if (customer == null || vehicle == null || days <= 0 || !vehicle.IsAvailable)
             {
@@ -52,7 +52,7 @@ namespace VRS
             string rentalsID = (Rentals.Count + 1).ToString("D4");
             DateTime endDate = DateTime.Now.AddDays(days);
 
-            Rental rental = new(rentalsID, customer, vehicle, endDate);
+            Rental? rental = new(rentalsID, customer, vehicle, endDate,applyInsurance);
 
             Rentals.Add(rental);
             vehicle.Rent();

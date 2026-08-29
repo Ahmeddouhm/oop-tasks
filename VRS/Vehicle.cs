@@ -37,7 +37,6 @@ namespace VRS
         public virtual double CalculateRentalCost(int days) 
         {
             double totalCost = DailyRate * days;
-            //double lateFees = 
 
             if (days > 15)
             {

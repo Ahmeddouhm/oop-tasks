@@ -54,6 +54,14 @@ Console.WriteLine($"Vehicle: {rental3.Vehicle.Year} {rental3.Vehicle.Make} {rent
 Console.WriteLine($"Duration: {rental3.GetRentalDuration()} Days");
 Console.WriteLine();
 
+var rental4 = agency.CreateRental(customer2, myLuxury, 30, true);
+Console.WriteLine("Rental created: " + rental4?.ID);
+Console.WriteLine("Total Cost: " + rental4?.GetTotalCost().ToString("C"));
+Console.WriteLine($"Customer: {rental4?.Customer.Name}");
+Console.WriteLine($"Vehicle: {rental4?.Vehicle.Year} {rental4?.Vehicle.Make} {rental4?.Vehicle.Model} ");
+Console.WriteLine($"Duration: {rental4?.GetRentalDuration()} Days");
+Console.WriteLine();
+
 // Display available vehicles after rentals
 Console.WriteLine("After rentals:");
 Console.WriteLine(agency.DisplayFleet());

@@ -7,15 +7,17 @@ namespace VRS
 {
     internal class Rental
     {
-        public string ID { get; set; }
+        public string? ID { get; set; }
         public double LateFee { get; set; }
-        public Customer Customer { get; set; }
-        public Vehicle Vehicle { get; set; }
+        public Customer? Customer { get; set; }
+        public Vehicle? Vehicle { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
+        public bool HasInsurance { get; set; }
+        public double InsuranceDailyRate { get; set; } = 15.0;
 
-        public Rental(string id, Customer customer, Vehicle vehicle, DateTime endDate)
+        public Rental(string id, Customer customer, Vehicle vehicle, DateTime endDate, bool hasInsurance = false)
         {
             ID = id;
             Customer = customer;
@@ -23,17 +25,14 @@ namespace VRS
             StartDate = DateTime.Now;
             EndDate = endDate;
             IsActive = true;
+            HasInsurance = hasInsurance;
         }
 
-        public int GetRentalDuration() 
-        {
-            return (int)Math.Ceiling((EndDate - StartDate).TotalDays);
-        }
+        public double CalculateInsuranceFees() => HasInsurance ? GetRentalDuration() * InsuranceDailyRate : 0.0;
 
-        public double GetTotalCost() 
-        {
-            return Vehicle.CalculateRentalCost(GetRentalDuration()) + 150 + LateFee;
-        }
+        public int GetRentalDuration() => (int)Math.Ceiling((EndDate - StartDate).TotalDays);
+
+        public double GetTotalCost() => Vehicle.CalculateRentalCost(GetRentalDuration()) + CalculateInsuranceFees() + LateFee;
 
         public void CompleteRental(DateTime? actualReturnDate = null)
         {
@@ -43,7 +42,7 @@ namespace VRS
             {
                 int lateDays = (int)Math.Ceiling((returnDate - EndDate).TotalDays);
 
-                LateFee = (Vehicle.DailyRate * 0.75) * lateDays; 
+                LateFee = (Vehicle.DailyRate * 1.5) * lateDays; 
             }
 
             Vehicle.ReturnVehicle();
