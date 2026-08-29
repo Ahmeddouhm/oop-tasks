@@ -164,7 +164,7 @@ Alice's rental history: 1 rental(s)
 ## Bonus Challenges (Optional)
 1. Generate rental receipts → DONE
 2. Implement discounts for long-term rentals → DONE
-3. Add insurance options with additional costs
+3. Add insurance options with additional costs → DONE
 4. Add different vehicle types (SUV, Truck, Luxury) with different rates → DONE
 5. Implement late return fees → DONE
 6. Add fuel policy (full-to-full, pre-paid, etc.)

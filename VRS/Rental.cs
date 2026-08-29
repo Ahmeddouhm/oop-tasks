@@ -7,10 +7,10 @@ namespace VRS
 {
     internal class Rental
     {
-        public string? ID { get; set; }
+        public string ID { get; set; }
         public double LateFee { get; set; }
-        public Customer? Customer { get; set; }
-        public Vehicle? Vehicle { get; set; }
+        public Customer Customer { get; set; }
+        public Vehicle Vehicle { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
