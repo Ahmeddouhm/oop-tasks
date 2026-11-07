@@ -32,7 +32,7 @@ namespace ZMS
 
         public override string GetAnimalInfo()
         {
-            return base.GetAnimalInfo() + $"Tail Len {TailLength}" + $"FavFood {FavFood}";
+            return base.GetAnimalInfo() + $" - Tail Len {TailLength}" + $"FavFood {FavFood}";
         }
 
         public override double CalculateWeeklyCost()

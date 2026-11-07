@@ -28,12 +28,12 @@ namespace ZMS
 
         public override string GetHabitat()
         {
-            return "GrassLand";
+            return "Grassland";
         }
 
         public override string GetAnimalInfo()
         {
-            return base.GetAnimalInfo() + $"Weight: {Weight}" + $"Tusk Len: {TuskLength}";
+            return base.GetAnimalInfo() + $" - Weight: {Weight}" + $"Tusk Len: {TuskLength}";
         }
 
         public override double CalculateWeeklyCost()

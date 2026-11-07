@@ -22,7 +22,7 @@ namespace ZMS
 
         public override string GetHabitat()
         {
-            return "Desert!";
+            return "Desert";
         }
 
         public override string MakeSound()
@@ -33,7 +33,7 @@ namespace ZMS
         public override string GetAnimalInfo()
         {
             string v = IsVenomous ? "Venomous" : "Not Venomous";
-            return base.GetAnimalInfo() + $"Length: {Length:D2}" + v;
+            return base.GetAnimalInfo() + $" - Length: {Length:F2}" + v;
         }
 
         public override double CalculateWeeklyCost()

@@ -32,7 +32,7 @@ namespace ZMS
 
         public override string GetAnimalInfo()
         {
-            return base.GetAnimalInfo() + $"Mane is {ManeColor}" + $"Pride Size {PrideSize}";
+            return base.GetAnimalInfo() + $" - Mane is {ManeColor}" + $"Pride Size {PrideSize}";
         }
 
         public override double CalculateWeeklyCost()

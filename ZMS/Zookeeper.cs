@@ -32,13 +32,10 @@ namespace ZMS
 
         public void FeedAnimal(Animal animal) 
         {
-            // Feeding Animal Logic
+            Console.WriteLine($"{Name} fed {animal.Name} ({animal.Species})");
         }
 
-        public string CheckAnimalHealth(Animal animal) 
-        {
-            return animal.HealthStatus;
-        }
+        public void CheckHealth(Animal animal) => Console.WriteLine($"{Name} checked health of {animal.Name} ({animal.Species}) - Status: {animal.HealthStatus}");
 
         public int GetWorkLoad() 
         {

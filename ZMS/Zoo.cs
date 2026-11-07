@@ -26,7 +26,12 @@ namespace ZMS
         public List<Animal> Animals { get; set; }
         public List<Zookeeper> Keepers { get; set; }
 
-        public Predicate<Animal> FilterAnimals;
+        public Zoo(string name) 
+        {
+            Name = name;
+            Animals = new();
+            Keepers = new();
+        }
 
         public void AddAnimal(Animal animal) 
         {
@@ -98,7 +103,7 @@ namespace ZMS
 
             foreach (var a in Animals)
             {
-                sb.AppendLine($"{a.Name} - Makes {a.MakeSound()}");
+                sb.AppendLine($"{a.Name} - {a.GetAnimalInfo()}");
             }
 
             return sb.ToString();
@@ -110,7 +115,8 @@ namespace ZMS
 
             sb.AppendLine($"{Name} Statistics");
             sb.AppendLine($"==================");
-
+            sb.AppendLine($"Habitats : {Animals.Select(a => a.GetHabitat()).Distinct().Count()}");
+            sb.AppendLine($"Average Age : {(Animals.Count > 0 ? Animals.Average(a => a.Age) : 0.0):F1}");
             sb.AppendLine($"Zoo has {Animals.Count}");
             sb.AppendLine($"Zoo has {Keepers.Count}");
             sb.AppendLine($"Zoo costs weekly {CalculateTotalWeeklyCost()}");

@@ -31,7 +31,7 @@ namespace ZMS
 
         public override string GetAnimalInfo()
         {
-            return base.GetAnimalInfo() + $"Wing Span: {WingSpan:D2}" + $"Dive Speed: {DiveSpeed:D2}";
+            return base.GetAnimalInfo() + $" - Wing Span: {WingSpan:F2}" + $"Dive Speed: {DiveSpeed:F2}";
         }
 
         public override double CalculateWeeklyCost()

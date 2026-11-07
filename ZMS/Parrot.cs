@@ -39,7 +39,7 @@ namespace ZMS
         public override string GetAnimalInfo()
         {
             string canTalk = CanTalk ? "Yes Can Talk" : "No Can't Talk";
-            return base.GetAnimalInfo() + $"Talk Status {canTalk}" + $"Vocabs = {Vocabulary.Count}";
+            return base.GetAnimalInfo() + $" - Talk Status {canTalk}" + $"Vocabs = {Vocabulary.Count}";
         }
 
         public override double CalculateWeeklyCost()

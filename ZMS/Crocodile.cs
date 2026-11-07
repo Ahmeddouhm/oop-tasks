@@ -32,7 +32,7 @@ namespace ZMS
 
         public override string GetAnimalInfo()
         {
-            return base.GetAnimalInfo() + $"Weight: {Weight:D2}" + $"Jaw Strength: {JawStrength:D2}";
+            return base.GetAnimalInfo() + $" - Weight: {Weight:F2}" + $"Jaw Strength: {JawStrength:F2}";
         }
 
         public override double CalculateWeeklyCost()
