@@ -4,6 +4,11 @@ using System.Text;
 
 namespace ZMS
 {
+    enum Gender 
+    {
+        Male,
+        Female
+    }
     internal abstract class Animal
     {
         /*
@@ -29,7 +34,9 @@ namespace ZMS
         public string HealthStatus { get; set; }
         public int Age { get; set; }
         public double DailyFoodCost { get; set; }
-        protected Animal(string id, string name, string species, string healthStatus, int age, double dailyFoodCost)
+        public bool IsEndangered { get; set; }
+        public Gender Gender { get; set; }
+        protected Animal(string id, string name, string species, string healthStatus, int age, double dailyFoodCost, bool isEndangered, Gender gender)
         {
             ID = id;
             Name = name;
@@ -37,6 +44,8 @@ namespace ZMS
             HealthStatus = healthStatus;
             Age = age;
             DailyFoodCost = dailyFoodCost;
+            IsEndangered = isEndangered;
+            Gender = gender;
         }
         public abstract string MakeSound();
         public abstract string GetHabitat();
