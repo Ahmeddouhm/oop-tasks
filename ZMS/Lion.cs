@@ -29,5 +29,15 @@ namespace ZMS
         {
             return "Savanna";
         }
+
+        public override string GetAnimalInfo()
+        {
+            return base.GetAnimalInfo() + $"Mane is {ManeColor}" + $"Pride Size {PrideSize}";
+        }
+
+        public override double CalculateWeeklyCost()
+        {
+            return base.CalculateWeeklyCost();
+        }
     }
 }

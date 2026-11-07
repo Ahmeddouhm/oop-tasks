@@ -35,5 +35,16 @@ namespace ZMS
 
             return Vocabulary[rnd.Next(0, Vocabulary.Count)];
         }
+
+        public override string GetAnimalInfo()
+        {
+            string canTalk = CanTalk ? "Yes Can Talk" : "No Can't Talk";
+            return base.GetAnimalInfo() + $"Talk Status {canTalk}" + $"Vocabs = {Vocabulary.Count}";
+        }
+
+        public override double CalculateWeeklyCost()
+        {
+            return base.CalculateWeeklyCost();
+        }
     }
 }

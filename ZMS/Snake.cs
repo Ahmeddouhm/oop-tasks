@@ -29,5 +29,16 @@ namespace ZMS
         {
             return "Hiss!";
         }
+
+        public override string GetAnimalInfo()
+        {
+            string v = IsVenomous ? "Venomous" : "Not Venomous";
+            return base.GetAnimalInfo() + $"Length: {Length:D2}" + v;
+        }
+
+        public override double CalculateWeeklyCost()
+        {
+            return base.CalculateWeeklyCost();
+        }
     }
 }

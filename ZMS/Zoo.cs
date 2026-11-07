@@ -26,7 +26,7 @@ namespace ZMS
         public List<Animal> Animals { get; set; }
         public List<Zookeeper> Keepers { get; set; }
 
-        public delegate bool FilterAnimals(Animal a);
+        public Predicate<Animal> FilterAnimals;
 
         public void AddAnimal(Animal animal) 
         {
@@ -60,7 +60,7 @@ namespace ZMS
             keeper.AssignedAnimals.Add(animal);
         }
 
-        public List<Animal>? GetAnimals(FilterAnimals filter) 
+        public List<Animal>? GetAnimals(Predicate<Animal> filter) 
         {
             var animals = new List<Animal>();
 
@@ -74,24 +74,48 @@ namespace ZMS
 
             return animals;
         }
-        //public List<Animal>? GetAnimalsBySpecies(string species) 
-        //{
-        //    var animals = new List<Animal>();
-        //    if (string.IsNullOrWhiteSpace(species))
-        //    {
-        //        Console.WriteLine("[ERROR] Null Habitat Value");
-        //        throw new ArgumentException();
-        //    }
+        public List<Animal>? GetAnimalsBySpecies(string species) => GetAnimals(a => a.Species == species);
+        public List<Animal>? GetAnimalsByHabitat(string habitat) => GetAnimals(a => a.GetHabitat() == habitat);
 
-        //    foreach (var a in Animals)
-        //    {
-        //        if (a.Species == species)
-        //        {
-        //            animals.Add(a);
-        //        }
-        //    }
+        public double CalculateTotalWeeklyCost() 
+        {
+            double cost = 0;
 
-        //    return animals;
-        //}
+            foreach (var a in Animals)
+            {
+                cost += a.CalculateWeeklyCost();
+            }
+
+            return cost;
+        }
+
+        public string DisplayAllAnimals() 
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"{Name} All Animals");
+            sb.AppendLine($"==================");
+
+            foreach (var a in Animals)
+            {
+                sb.AppendLine($"{a.Name} - Makes {a.MakeSound()}");
+            }
+
+            return sb.ToString();
+        }
+
+        public string GetZooStatistics() 
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"{Name} Statistics");
+            sb.AppendLine($"==================");
+
+            sb.AppendLine($"Zoo has {Animals.Count}");
+            sb.AppendLine($"Zoo has {Keepers.Count}");
+            sb.AppendLine($"Zoo costs weekly {CalculateTotalWeeklyCost()}");
+
+            return sb.ToString();
+        }
     }
 }

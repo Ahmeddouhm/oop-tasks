@@ -29,5 +29,15 @@ namespace ZMS
         {
             return "Growl!";
         }
+
+        public override string GetAnimalInfo()
+        {
+            return base.GetAnimalInfo() + $"Weight: {Weight:D2}" + $"Jaw Strength: {JawStrength:D2}";
+        }
+
+        public override double CalculateWeeklyCost()
+        {
+            return base.CalculateWeeklyCost();
+        }
     }
 }

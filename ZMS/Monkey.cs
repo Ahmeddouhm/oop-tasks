@@ -29,5 +29,15 @@ namespace ZMS
         {
             return "Ooh Ooh ah ah!";
         }
+
+        public override string GetAnimalInfo()
+        {
+            return base.GetAnimalInfo() + $"Tail Len {TailLength}" + $"FavFood {FavFood}";
+        }
+
+        public override double CalculateWeeklyCost()
+        {
+            return base.CalculateWeeklyCost();
+        }
     }
 }

@@ -6,11 +6,6 @@ namespace ZMS
 {
     internal class Eagle : Animal
     {
-        public Eagle(string id, string name, string species, string healthStatus, int age, double dailyFoodCost , double wingSpan, double diveSpeed) : base(id, name, species, healthStatus, age, dailyFoodCost)
-        {
-            WingSpan = wingSpan;
-            DiveSpeed = diveSpeed;
-        }
 
         /*
            - Additional properties: `wingspan`, `diveSpeed`
@@ -19,6 +14,11 @@ namespace ZMS
         */
         public double WingSpan { get; set; }
         public double DiveSpeed { get; set; }
+        public Eagle(string id, string name, string species, string healthStatus, int age, double dailyFoodCost , double wingSpan, double diveSpeed) : base(id, name, species, healthStatus, age, dailyFoodCost)
+        {
+            WingSpan = wingSpan;
+            DiveSpeed = diveSpeed;
+        }
         public override string GetHabitat()
         {
             return "Mountains";
@@ -27,6 +27,16 @@ namespace ZMS
         public override string MakeSound()
         {
             return "Screech!";
+        }
+
+        public override string GetAnimalInfo()
+        {
+            return base.GetAnimalInfo() + $"Wing Span: {WingSpan:D2}" + $"Dive Speed: {DiveSpeed:D2}";
+        }
+
+        public override double CalculateWeeklyCost()
+        {
+            return base.CalculateWeeklyCost();
         }
     }
 }

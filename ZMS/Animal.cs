@@ -43,11 +43,11 @@ namespace ZMS
 
         public virtual string GetAnimalInfo() 
         {
-            return string.Empty;
+            return $"{ID} - {Name} ({Species}) - Age: {Age} - Habitat: {GetHabitat()}";
         }
         public virtual double CalculateWeeklyCost() 
         {
-            return 0;
+            return DailyFoodCost * 7;
         }
     }
 }
