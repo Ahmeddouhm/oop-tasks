@@ -205,8 +205,8 @@ Average Animal Age: 8.8 years
 ```
 
 ## Bonus Challenges (Optional)
-1. Add aquatic animals with swimming behavior
-2. Implement breeding programs for endangered species
+1. Add aquatic animals with swimming behavior → DONE
+2. Implement breeding programs for endangered species  → DONE
 3. Add visitor management with ticket pricing
 4. Create feeding schedules with time-based logic
 5. Add medical records and veterinarian class
