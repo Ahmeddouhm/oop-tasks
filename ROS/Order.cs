@@ -27,5 +27,14 @@ namespace ROS
             OrderTime = orderTime;
             Status = status;
         }
+
+        public void AddItem(MenuItem menuItem, int quantity, string instructions) 
+        {
+            
+        }
+        public void RemoveItem(string itemId)
+        {
+            
+        }
     }
 }
